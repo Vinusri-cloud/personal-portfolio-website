@@ -676,7 +676,9 @@
         };
 
         try {
-          const response = await fetch('http://localhost:3000/api/contact', {
+          // CHANGED: was 'http://localhost:3000/api/contact'
+          // Replace the URL below with YOUR actual Vercel deployment URL
+          const response = await fetch('https://portfolio-contact-api.vercel.app/api/contact', {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json'
@@ -688,14 +690,14 @@
 
           if (response.ok && result.status === 'success') {
             statusElement.className = "status-text success";
-            statusElement.innerText = "Transmission Complete! Success packet returned from local server.";
+            statusElement.innerText = "Transmission Complete! Your message was sent successfully.";
             document.getElementById('portfolioContactForm').reset();
           } else {
             throw new Error("Server rejected transmission packet.");
           }
         } catch (error) {
           statusElement.className = "status-text error";
-          statusElement.innerText = "Connection failure. Make sure server.js is running locally.";
+          statusElement.innerText = "Connection failure. Please try again later.";
         }
       });
     </script>
